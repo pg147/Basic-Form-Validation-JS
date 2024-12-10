@@ -36,6 +36,17 @@ document.addEventListener('DOMContentLoaded', () => {
             setPassed(userName);
         }
         
+        // 2. 
+        if (emailValue === '') {
+            setError(email, 'Email is required');
+        } else if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(emailValue)) {
+            setError(email, 'Enter a valid email address');
+        } else {
+            setPassed(email);
+        }
+        
+        // 3. 
+        
     }
 
     const setError = (element, message) => {
