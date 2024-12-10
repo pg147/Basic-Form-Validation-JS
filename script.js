@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Validation Rules
 
-        // 1. For User Name
+        // 1. Username Validation
         if (userNameValue === '') {
             setError(userName, 'Username is required');
         } else if (!/^[a-zA-Z0-9]+$/.test(userNameValue)) {
@@ -35,8 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             setPassed(userName);
         }
-        
-        // 2. 
+
+        // 2. Email Validation
         if (emailValue === '') {
             setError(email, 'Email is required');
         } else if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(emailValue)) {
@@ -44,9 +44,33 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             setPassed(email);
         }
-        
-        // 3. 
-        
+
+        // 3. Password Validation
+        if (passwordValue === '') {
+            setError(password, 'Password is required');
+        } else if (passwordValue.length < 8) {
+            setError(password, 'Password must be at least 8 characters long');
+        } else if (!/[A-Z]/.test(passwordValue)) {
+            setError(password, 'Password must contain at least one uppercase letter');
+        } else if (!/[a-z]/.test(passwordValue)) {
+            setError(password, 'Password must contain at least one lowercase letter');
+        } else if (!/\d/.test(passwordValue)) {
+            setError(password, 'Password must contain at least one digit');
+        } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(passwordValue)) {
+            setError(password, 'Password must contain at least one special character');
+        } else {
+            setPassed(password);
+        }
+
+        // 4. Confirm Password Validation
+        if (confirmPasswordValue === '') {
+            setError(confirmPassword, 'Confirm Password is required');
+        } else if (confirmPasswordValue !== passwordValue) {
+            setError(confirmPassword, 'Passwords do not match');
+        } else {
+            setPassed(confirmPassword);
+        }
+
     }
 
     const setError = (element, message) => {
